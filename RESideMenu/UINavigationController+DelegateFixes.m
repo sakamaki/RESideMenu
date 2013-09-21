@@ -10,6 +10,7 @@
 
 @implementation UINavigationController (DelegateFixes)
 
+/*
 - (BOOL)shouldAutorotate
 {
     return [[self.viewControllers lastObject] shouldAutorotate];
@@ -36,5 +37,6 @@
 {
     return [[self.viewControllers lastObject] preferredStatusBarStyle];
 }
+*/
 
 @end
