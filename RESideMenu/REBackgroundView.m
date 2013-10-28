@@ -25,6 +25,8 @@
 
 #import "REBackgroundView.h"
 
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 @interface REBackgroundView ()
 
 @property (strong, readonly, nonatomic) UIImageView *imageView;
@@ -41,7 +43,18 @@
         _imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:_imageView];
         UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_white.png"]];
-        logo.center = CGPointMake(self.center.x, 50);
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
+        if (screenSize.width == 320.0 && screenSize.height == 568.0) {
+            if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+                logo.center = CGPointMake(self.center.x, 90);
+            }
+            else {
+                logo.center = CGPointMake(self.center.x, 70);
+            }
+        }
+        else {
+            logo.center = CGPointMake(self.center.x, 50);
+        }
         [self addSubview:logo];
     }
     return self;
