@@ -36,7 +36,8 @@
     } 
     self.textLabel.frame = CGRectMake(self.horizontalOffset, self.textLabel.frame.origin.y, self.textLabel.frame.size.width-110, self.textLabel.frame.size.height);
     self.textLabel.minimumScaleFactor = 0.5;
-    self.textLabel.adjustsFontSizeToFitWidth = YES;;
+    self.textLabel.adjustsFontSizeToFitWidth = YES;
+    [self.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:22]];
 }
 
 @end

@@ -40,6 +40,9 @@
         _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
         _imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:_imageView];
+        UIImageView *logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_white.png"]];
+        logo.center = CGPointMake(self.center.x, 50);
+        [self addSubview:logo];
     }
     return self;
 }
