@@ -1,5 +1,5 @@
 //
-// RESideMenuCell.m
+// RECommonFunctions.h
 // RESideMenu
 //
 // Copyright (c) 2013 Roman Efimov (https://github.com/romaonthego)
@@ -23,21 +23,25 @@
 // THE SOFTWARE.
 //
 
-#import "RESideMenuCell.h"
+#import <Foundation/Foundation.h>
 
-@implementation RESideMenuCell
+#ifndef REUIKitIsFlatModeFunction
+#define REUIKitIsFlatModeFunction
+BOOL REUIKitIsFlatMode();
+#endif
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    if (self.imageView.image) {
-        [self.imageView setContentMode:UIViewContentModeCenter];
-        self.imageView.frame = CGRectMake(0, 0, self.horizontalOffset, self.frame.size.height);
-    } 
-    self.textLabel.frame = CGRectMake(self.horizontalOffset, self.textLabel.frame.origin.y, self.textLabel.frame.size.width-110, self.textLabel.frame.size.height);
-    self.textLabel.minimumScaleFactor = 0.5;
-    self.textLabel.adjustsFontSizeToFitWidth = YES;
-    [self.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:22]];
+#ifndef kCFCoreFoundationVersionNumber_iOS_6_1
+#define kCFCoreFoundationVersionNumber_iOS_6_1 793.00
+#endif
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_6_1
+#define IF_IOS7_OR_GREATER(...) \
+if (kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber_iOS_6_1) \
+{ \
+__VA_ARGS__ \
 }
+#else
+#define IF_IOS7_OR_GREATER(...)
+#endif
 
-@end
+BOOL REDeviceIsUIKit7() __attribute__ ((deprecated));
